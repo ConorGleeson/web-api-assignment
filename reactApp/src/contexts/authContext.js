@@ -1,5 +1,5 @@
 import React, { useState, createContext } from "react";
-import { login, signup } from "./api/movie-api";
+import { login, signup } from "../api/movie-api";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext(null);
@@ -20,6 +20,7 @@ const AuthContextProvider = (props) => {
 
   const authenticate = async (username, password) => {
     const result = await login(username, password);
+    console.log(result)
     if (result.token) {
       setToken(result.token);
       setIsAuthenticated(true);

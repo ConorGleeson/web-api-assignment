@@ -12,9 +12,9 @@ import { styled } from '@mui/material/styles';
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-//firebase
-import { useEffect} from "react";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+// //firebase
+// import { useEffect} from "react";
+// import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
@@ -22,10 +22,7 @@ const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
 const SiteHeader = ({ history }) => {
   const [user, setUser] = useState({});
-useEffect(() => {
-  onAuthStateChanged(getAuth(), (currentUser) => {
-    setUser(currentUser);
-  })});
+
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -62,7 +59,7 @@ useEffect(() => {
             Movie Time!  
           </Typography>
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            Hey!   {user ? user.email : "Not Logged In"} Its Movie Time! 
+             Its Movie Time! 
           </Typography>
             {isMobile ? (
               <>
