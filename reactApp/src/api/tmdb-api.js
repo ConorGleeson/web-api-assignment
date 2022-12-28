@@ -1,38 +1,38 @@
 
 
 
-// export const getMovies = (args) => {
-//   const[,sortMovieBy] = args.queryKey;
-//   const[, pageNumPart] = args.queryKey; //based off of movies id below
-//   const {pageNum} = pageNumPart; 
-//   const {sort} =sortMovieBy;
-//   console.log(pageNum)
-//   return fetch(
-//     `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=${pageNum}`
-//   ).then((response) => {
-//     if (!response.ok) {
-//       throw new Error(response.json().message);
-//     }
-//     return response.json();
-//   })
-//   .catch((error) => {
-//      throw error
-//   });
-// };
-
-export const getMovies = () => {
+export const getMovies = (args) => {
+  const[,sortMovieBy] = args.queryKey;
+  const[, pageNumPart] = args.queryKey; //based off of movies id below
+  const {pageNum} = pageNumPart; 
+  const {sort} =sortMovieBy;
+  console.log(pageNum)
   return fetch(
-      '/api/movies',{headers: {
-          'Authorization': window.localStorage.getItem('token')
-     }
-  }).then((response) => {
-      if (!response.ok) throw new Error(response.json().message);
-      return response.json();
+    `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=${pageNum}`
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error(response.json().message);
+    }
+    return response.json();
   })
-      .catch((e) => {
-          throw e
-      });
+  .catch((error) => {
+     throw error
+  });
 };
+
+// export const getMovies = () => {
+//   return fetch(
+//       '/api/movies',{headers: {
+//           'Authorization': window.localStorage.getItem('token')
+//      }
+//   }).then((response) => {
+//       if (!response.ok) throw new Error(response.json().message);
+//       return response.json();
+//   })
+//       .catch((e) => {
+//           throw e
+//       });
+// };
 
 export const getMovie = (args) => {
   const [, idPart] = args.queryKey;
