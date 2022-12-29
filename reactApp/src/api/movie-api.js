@@ -46,3 +46,12 @@ export const getMovies = () => {
     }
     ).then(res => res.json());
   };
+
+  export const getTopRated = () => {
+    return fetch(
+       '/api/topRatedMovies',{headers: {
+         'Authorization': window.localStorage.getItem('token')
+      }
+    }
+    ).then(res => res.json());
+  };

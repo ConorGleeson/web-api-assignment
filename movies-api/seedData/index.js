@@ -8,6 +8,9 @@ import movies from './movies.js';
 import tvshows from './tvshows.js';
 import tvshowsModel from '../api/tvshows/showModel.js'
 
+import topRatedMoviesModel from '../api/topRatedMovies/topRatedMoviesModel.js';
+import  topRatedMovies from './topRatedMovies.js';
+
 dotenv.config();
 
 // deletes all user documents in collection and inserts test data
@@ -62,11 +65,25 @@ export async function loadShows() {
   }
 }
 
+
+export async function loadTopRatedMovies() {
+  console.log('load seed data');
+  console.log(topRatedMovies.length);
+  try {
+    await topRatedMoviesModel.deleteMany();
+    await topRatedMoviesModel.collection.insertMany(topRatedMovies);
+    console.info(`${topRatedMovies.length} top rated were successfully stored.`);
+  } catch (err) {
+    console.error(`failed to Load top Rated Data: ${err}`);
+  }
+}
+
 if (process.env.SEED_DB) {
   loadUsers();
   loadGenres();
   loadMovies();//ADD THIS LINE
   loadShows();
+  loadTopRatedMovies(); 
 }
 
 

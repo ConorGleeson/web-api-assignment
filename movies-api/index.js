@@ -9,6 +9,8 @@ import './seedData'
 import session from 'express-session';
 import passport from './authenticate';
 
+import topRatedMoviesRouter from './api/topRatedMovies'
+
 
 dotenv.config();
 
@@ -35,6 +37,10 @@ app.use(passport.initialize());
 
 // Add passport.authenticate(..)  to middleware stack for protected routes​
 app.use('/api/movies', passport.authenticate('jwt', {session: false}), moviesRouter);
+
+
+//top rated movies router
+app.use('/api/topRatedMovies', passport.authenticate('jwt', {session: false}), topRatedMoviesRouter);
 
 
 app.use('/api/genres', genresRouter);

@@ -1,5 +1,5 @@
 import React from "react";
-import { getTopRated } from "../api/tmdb-api";
+import { getTopRated } from "../api/movie-api";
 import PageTemplate from '../components/movieComponents/templateMovieListPage';
 import { useQuery } from 'react-query';
 import Spinner from '../components/spinner';
@@ -18,7 +18,7 @@ const TopRatedMoviesPage = (props) => {
   if (isError) {
     return <h1>{error.message}</h1>
   }  
-  const movies = data.results;
+  const movies = data;
   console.log(movies)
 
   // Redundant, but necessary to avoid app crashing.
