@@ -26,3 +26,14 @@ export const getMovies = () => {
     }
     ).then(res => res.json());
   };
+
+
+
+  export const getTVShows = () => {
+    return fetch(
+       '/api/tvshows',{headers: {
+         'Authorization': window.localStorage.getItem('token')
+      }
+    }
+    ).then(res => res.json());
+  };

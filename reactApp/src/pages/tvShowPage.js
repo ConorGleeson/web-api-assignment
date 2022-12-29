@@ -1,5 +1,5 @@
 import React from "react";
-import { getTVShows } from "../api/tmdb-api";
+import { getTVShows } from "../api/movie-api";
 import TVShowListPageTemplate from '../components/tvShowComponents/templateTVShowListPage';
 import { useQuery } from 'react-query';
 import Spinner from '../components/spinner';
@@ -16,7 +16,7 @@ const TVShowPage = (props) => {
   if (isError) {
     return <h1>{error.message}</h1>
   }  
-  const show = data.results;
+  const show = data;
 
 
   // Redundant, but necessary to avoid app crashing.
