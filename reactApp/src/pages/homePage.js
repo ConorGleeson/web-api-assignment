@@ -26,7 +26,8 @@ const HomePage = (props) => {
   if (isError) {
     return <h1>{error.message}</h1>
   }  
-  const movies = data.results;
+  const movies = data;
+  console.log(movies)
 
   // // Redundant, but necessary to avoid app crashing.
   // const favourites = movies.filter(m => m.favourite)
