@@ -68,3 +68,6 @@ if (process.env.SEED_DB) {
   loadMovies();//ADD THIS LINE
   loadShows();
 }
+
+
+//privious "test" commit done due to having error with github uploading the movies-api as a submodule making the files not able to be viewed on github and also not being able to commit new changes to the section of the app. Solution was to use " git rm --cached movies-api" and then re add and commit. This resulted in the entire movies api being commited at once. I had no noticed this error until having made some progress with the assignment upto updating my react app to use the new api calls for movies and tv shows 
