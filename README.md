@@ -1,20 +1,17 @@
 # Assignment 2 - Web API.
 
-Name: [Your Name]
+Name: Conor Gleeson 20093384
 
 ## Features.
 
 [A bullet-point list of the ADDITIONAL features/endpoints you have implemented in the API **THAT WERE NOT IN THE LABS** ]. 
 
- + Feature 1 - .... a statement of its purpose/objective ..... 
+ + Feature 1 - User Authentication: login and sign up. 
 
- + Feature 2 - .......
+ + Feature 2 - New Api routes for react app pages
 
  + Feature 3 - ......
 
-   e.g.
-
- + Get Similar Movies:  Get a list of similar movies using a movie ID. 
 
 ## Installation Requirements
 
@@ -23,26 +20,37 @@ Describe what needs to be on the machine to run the API (Node v?, NPM, MongoDB i
 Describe getting/installing the software, perhaps:
 
 ```bat
-git clone http:\myrepo.git
+git clone https://github.com/ConorGleeson/labMoviesApp.git
 ```
 
 followed by installation
 
+intall required npm components to the app
 ```bat
-git install
+cd .\movies-api\
+npm install
+cd .\reactApp\
+```
+ensure mongoDB is installed and running with 
+```bat
+mongod -dbpath db
+```
+sometimes the passport node module needs to be installed indendantly to the movies-api
+```bat
+npm install --save passport passport-jwt jsonwebtoken bcrypt-nodejs
 ```
 
 ## API Configuration
 Describe any configuration that needs to take place before running the API. For example, creating an ``.env`` and what variables to put in it. Give an example of how this might be structured/done.
-**REMEMBER: DON'T PUT YOUR OWN USERNAMES/PASSWORDS/AUTH KEYS IN THE README OR ON GITHUB,** just placeholders as indicated below:
+
 
 ```bat
 NODE_ENV=development
 PORT=8080
-HOST=
-mongoDB=YourMongoURL
-seedDb=true
-secret=YourJWTSecret
+HOST=localhost
+MONGO_DB=mongodb://localhost:27017/movies_db
+SEED_DB=True
+SECRET=ilikecake
 ```
 
 
