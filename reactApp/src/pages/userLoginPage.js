@@ -80,6 +80,11 @@ const LoginPage = (props) => {
                     {context.isAuthenticated ? context.userName : "Not logged in"}
                 </Typography>
             </div> 
+            <div>
+                <Typography style={{padding : 20}} align="center">
+                    <Button variant="contained" color="error" endIcon={<LogoutIcon/>}  onClick = {() => context.signout()}>Sign Out</Button>
+                </Typography>
+            </div>
             </div>
 
        
