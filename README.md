@@ -30,6 +30,7 @@ intall required npm components to the app
 cd .\movies-api\
 npm install
 cd .\reactApp\
+npm install
 ```
 ensure mongoDB is installed and running with 
 ```bat
@@ -59,39 +60,106 @@ Give an overview of your web API design, perhaps similar to the following:
 
 |  |  GET | POST | PUT | DELETE
 | -- | -- | -- | -- | -- 
-| /api/movies |Gets a list of movies | N/A | N/A |
+| /api/movies |Gets a list of movies | N/A | N/A | N/A
 | /api/movies/{movieid} | Get a Movie | N/A | N/A | N/A
-| /api/movies/{movieid}/reviews | Get all reviews for movie | Create a new review for Movie | N/A | N/A  
-| ... | ... | ... | ... | ...
+| /api/topRatedMovies | Gets top rated movies | N/A | N/A | N/A 
+| /api/users | Gets users | Login | N/A | N/A 
+| /api/users/{userid}| Gets individual user | N/A | N/A | N/A 
+| /api/users?action=register | N/A | Adds a new user  | N/A | N/A 
+| /api/tvShows | Gets list of TV shows | N/A  | N/A | N/A 
+| /api/tvShows/{tvShowid} | Gets individual TV Show | N/A | N/A | N/A 
+
 
 If you have your API design on an online platform or graphic, please link to it (e.g. [Swaggerhub](https://app.swaggerhub.com/)).
 
 
 ## Security and Authentication
-Give details of authentication/ security implemented on the API(e.g. passport/sessions). Indicate which routes are protected. **REMEMBER: DON'T PUT YOUR OWN USERNAMES/PASSWORDS/AUTH KEYS IN THE README OR ON GITHUB**
+Give details of authentication/ security implemented on the API(e.g. passport/sessions). Indicate which routes are protected.
+
+Uses JSON Web Tokens to authenticate users
+
+All routes bar the login page are private and cannot be be accessed until the user is signed in 
+
+![](/images/routes.png)
+
 
 ## Integrating with React App
 
 Describe how you integrated your React app with the API. Perhaps link to the React App repo and give an example of an API call from React App. For example: 
 
 ~~~Javascript
-export const getMovies = () => {
-  return fetch(
-     '/api/movies',{headers: {
-       'Authorization': window.localStorage.getItem('token')
-    }
-  }
-  )
-    .then(res => res.json())
-    .then(json => {return json.results;});
+export const login = (username, password) => {
+    return fetch('/api/users', {
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        method: 'post',
+        body: JSON.stringify({ username: username, password: password })
+    }).then(res => res.json())
 };
 
+export const signup = (username, password) => {
+    return fetch('/api/users?action=register', {
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        method: 'post',
+        body: JSON.stringify({ username: username, password: password })
+    }).then(res => res.json())
+};
+
+export const getMovies = () => {
+    return fetch(
+       '/api/movies',{headers: {
+         'Authorization': window.localStorage.getItem('token')
+      }
+    }
+    ).then(res => res.json());
+  };
+
+  export const getTVShows = () => {
+    return fetch(
+       '/api/tvshows',{headers: {
+         'Authorization': window.localStorage.getItem('token')
+      }
+    }
+    ).then(res => res.json());
+  };
+
+  export const getGenres = () => {
+    return fetch(
+       '/api/genres',{headers: {
+         'Authorization': window.localStorage.getItem('token')
+      }
+    }
+    ).then(res => res.json());
+  };
+
+  export const getTopRated = () => {
+    return fetch(
+       '/api/topRatedMovies',{headers: {
+         'Authorization': window.localStorage.getItem('token')
+      }
+    }
+    ).then(res => res.json());
+  };
+
 ~~~
+
+These are linked to the react app by allowing for users to sign in and then view movies and tv shows 
+
+![](/images/signuppage.png)
+
+![](/images/homepage.png)
 
 ## Extra features
 
 . . Briefly explain any non-standard features, functional or non-functional, developed for the app.  
 
+N/A
+
 ## Independent learning.
 
 . . State the non-standard aspects of React/Express/Node (or other related technologies) that you researched and applied in this assignment . .  
+
+N/A
