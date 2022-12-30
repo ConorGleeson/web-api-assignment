@@ -39,6 +39,12 @@ const LoginPage = (props) => {
     }
    }
 
+
+   const UserNameDisplay = () => {
+    const context = useContext(AuthContext);
+    
+   }
+
     return(
         <div>
             <div>
@@ -66,6 +72,14 @@ const LoginPage = (props) => {
                 <Button variant="contained" color="success" endIcon={<LoginIcon />} onClick={login}>Login</Button>
                 </Typography>
             </div>
+            <div>
+                <Typography align="center" variant="h4" sx={{flexgrow:1}}>
+                    User: 
+                </Typography>
+                <Typography  align="center">
+                    {context.isAuthenticated ? context.userName : "Not logged in"}
+                </Typography>
+            </div> 
             </div>
 
        
